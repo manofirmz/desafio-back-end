@@ -44,6 +44,7 @@ O desafio proposto consiste no desenvolvimento de uma **REST API**, onde testar�
 - Ambiente de desenvolvimento em Docker, utilizando o Docker Compose.
 - Modelagem do banco de dados e das migrations.
 - Seeds para popular o bacno de dados inicialmente com _users_ e _tasks_.
+- Documentação com as instruções de uso do projeto.
 
 ---
 
