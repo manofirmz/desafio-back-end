@@ -7,7 +7,7 @@ class TaskController {
         try {
             const tasks = await Task.findAll({
                 where: {
-                    id: request.userId
+                    user_id: request.userId
                 }
             });
     
@@ -72,7 +72,11 @@ class TaskController {
                     .json(errors.array());
             }
 
-            const stored = await Task.create(request.body);
+            const payload = {
+                ...request.body, 
+                user_id: request.userId
+            };
+            const stored = await Task.create(payload);
             const taskId = stored.id;
             const href = `/tasks/${taskId}`;
             const hateoas = {

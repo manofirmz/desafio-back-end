@@ -9,7 +9,6 @@ const TaskController = require('../../controllers/tasks/TaskController');
 const validators = [
     check('name').isString().notEmpty().withMessage('Name is required and must be string.'), 
     check('description').isString().notEmpty().withMessage('Description is required and must be string.'), 
-    check('user_id').isNumeric().withMessage('User id is required and must be number.'), 
     check('completion_status').isBoolean().optional().withMessage('Completion status is optional, but must be boolean.'), 
     check('cancellation_status').isBoolean().optional().withMessage('Cancellation status is optional, but must be boolean.')
 ];
