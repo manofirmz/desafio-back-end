@@ -1,0 +1,39 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: republica
+      MYSQL_DATABASE: lista_de_tarefas
+    ports:
+      - 3306:3306
+    networks:
+      - dev-network
+
+  redis:
+      image: redis:latest
+      container_name: redis
+      ports: 
+        - 127.0.0.1:6379:6379
+      networks:
+        - dev-network
+      command: redis-server --requirepass republica
+
+  node:
+    image: node:latest
+    container_name: node
+    ports: 
+      - 3000:3000
+    networks:
+      - dev-network
+    depends_on:
+      - mariadb
+      - redis
+    volumes:
+      - .:/var/www
+    command: sh -c 'cd /var/www && npm install && npm run start'
+
+networks:
+  dev-network:
+    driver: bridge
